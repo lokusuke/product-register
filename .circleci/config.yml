@@ -7,6 +7,7 @@ jobs:
       - checkout
       - setup_remote_docker # circleciのDockerデーモンを起動（Docker実行環境に必須）
       - run: docker-compose up --build -d
+      - run: docker-compose ps -a 
       - run: docker-compose exec web rails db:create
       - run: docker-compose exec web rails db:migrate
       - run: docker-compose exec web rails test 
