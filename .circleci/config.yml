@@ -5,6 +5,7 @@ jobs:
       - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
     steps:
       - checkout
+      - setup_remote_docker
       - run: docker-compose up --build -d
 
 workflows:
