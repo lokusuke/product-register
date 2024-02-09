@@ -11,6 +11,7 @@ jobs:
       - run: docker-compose exec web rails db:migrate
       - run: docker-compose exec web rails test --env
       - run: docker-compose exec web pwd
+      - run: docker-compose exec web ls -la
 
 workflows:
   build-test:
