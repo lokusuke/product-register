@@ -10,10 +10,6 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - features
-
+      - build
+    
 
