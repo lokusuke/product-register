@@ -5,12 +5,19 @@ jobs:
       - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker # circleciのDockerデーモンを起動（Docker実行環境に必須）
       - run: docker-compose up --build -d
+  rails:
+    docker:
+      - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
+    steps:
+      - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:create
+      - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
+      - run: docker-compose exec --env 'RAILS_ENV=test' web rails test
 
 workflows:
   build-test:
     jobs:
       - build
-    
+      - rails
 
