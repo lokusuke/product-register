@@ -9,7 +9,7 @@ jobs:
       - run: docker-compose up --build -d
       - run: docker-compose ps -a 
       - run: docker-compose exec web ls / -la
-      - run: docker-compose exec web find / -name Gemfile*
+      - run: docker-compose exec web find / -name "Gemfile*"
 
 workflows:
   build-test:
