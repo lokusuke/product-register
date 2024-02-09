@@ -11,6 +11,7 @@ jobs:
     docker:
       - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
     steps:
+      - checkout
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:create
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails test
