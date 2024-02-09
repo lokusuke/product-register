@@ -1,0 +1,19 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
+    steps:
+      - checkout
+      - run: docker-compose up --build -d
+
+workflows:
+  build-test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - features
+
+
