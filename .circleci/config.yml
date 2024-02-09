@@ -9,9 +9,9 @@ jobs:
       - run: docker-compose up --build -d
       - run: docker-compose exec web rails db:create
       - run: docker-compose exec web rails db:migrate
-      - run: docker-compose exec web rails test --env
+      - run: docker-compose exec web rails test 
       - run: docker-compose exec web pwd
-      - run: docker-compose exec web ls -la
+      - run: docker-compose exec web ls / -la
 
 workflows:
   build-test:
