@@ -7,7 +7,6 @@ jobs:
     steps:
       - checkout
       - run: docker-compose up --build -d
-      - run: docker-compose ps -a 
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:create
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails db:migrate
       - run: docker-compose exec --env 'RAILS_ENV=test' web rails test
