@@ -1,15 +1,16 @@
 version: 2.1
 jobs:
   build:
-    docker:
-      - image: cimg/base:2024.01  # dockerの実行環境を含むイメージ(docker, docker-compose)
+    machine:
+      # Docker実行環境をUbuntuのVMとして作成する
+      image: ubuntu-2204:2024.01.1
     steps:
-      - setup_remote_docker # circleciのDockerデーモンを起動（Docker実行環境に必須）
       - checkout
       - run: docker-compose up --build -d
       - run: docker-compose ps -a 
-      - run: docker-compose exec web ls / -la
-      - run: docker-compose exec web find / -name "Gemfile*"
+      - run: docker-compose exec web rails db:create --env 'RAILS_ENV=test'
+      - run: docker-compose exec web rails db:migrate --env 'RAILS_ENV=test'
+      - run: docker-compose exec web rails test --env 'RAILS_ENV=test'
 
 workflows:
   build-test:
