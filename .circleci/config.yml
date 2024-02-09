@@ -9,12 +9,11 @@ jobs:
       - run: docker-compose up --build -d
       - run: docker-compose ps -a 
       - run: ls
-      - run: docker-compose exec web cd /product-register/
       - run: docker-compose exec web rails db:create
       - run: docker-compose exec web rails db:migrate
       - run: docker-compose exec web rails test 
       - run: docker-compose exec web pwd
-      - run: docker-compose exec web ls /product-register/ -la
+      - run: docker-compose exec web ls  -la /product-register/app
 
 workflows:
   build-test:
