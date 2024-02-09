@@ -8,12 +8,7 @@ jobs:
       - checkout
       - run: docker-compose up --build -d
       - run: docker-compose ps -a 
-      - run: ls
-      - run: rails db:create
-      # - run: docker-compose exec web rails db:migrate
-      # - run: docker-compose exec web rails test 
-      # - run: docker-compose exec web pwd
-      # - run: docker-compose exec web rails s -b 0.0.0.0
+      - run: docker-compose exec web ls / -la
 
 workflows:
   build-test:
